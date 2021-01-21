@@ -12,15 +12,17 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
-        "symfony/framework-bundle": "~4.0",
+        "php": ">=7.3",
+        "symfony/framework-bundle": "^5.0",
         "jaybizzle/crawler-detect": "1.*"
     },
     "autoload": {
         "psr-4": { "Nmure\\CrawlerDetectBundle\\": "" }
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5",
-        "symfony/yaml": "^4.0"
+        "phpunit/phpunit": "^9.0",
+        "symfony/yaml": "^5.0",
+        "symfony/http-kernel": "^5.0",
+        "symfony/config": "^5.0"
     }
 }

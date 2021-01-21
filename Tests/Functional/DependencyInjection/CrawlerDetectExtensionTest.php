@@ -6,21 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class CrawlerDetectExtensionTest extends KernelTestCase
 {
-    private $container;
-
-    protected function setUp()
+    protected function setUp() : void
     {
         self::bootKernel();
-        $this->container = static::$kernel->getContainer();
-    }
-
-    protected function tearDown()
-    {
-        unset($this->container);
     }
 
     public function testServiceIsDefined()
     {
-        $this->assertInstanceOf('Jaybizzle\\CrawlerDetect\\CrawlerDetect', $this->container->get('crawler_detect'));
+        self::assertInstanceOf('Jaybizzle\\CrawlerDetect\\CrawlerDetect', static::$kernel->getContainer()->get('crawler_detect'));
     }
 }

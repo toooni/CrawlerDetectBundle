@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./Tests/bootstrap.php" colors="true">
+<phpunit bootstrap="vendor/autoload.php" colors="true">
 
     <logging>
         <log type="coverage-clover" target="build/logs/clover.xml" />
@@ -28,6 +28,6 @@
     </filter>
 
     <php>
-        <server name="KERNEL_CLASS" value="\AppKernel" />
+        <server name="KERNEL_CLASS" value="Nmure\CrawlerDetectBundle\Tests\AppKernel" />
     </php>
 </phpunit>
