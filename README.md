@@ -28,30 +28,19 @@ class as a service (`crawler_detect`) to make it easier to use with Symfony
 Download the bundle using composer :
 
 ```bash
-$ composer require nmure/crawler-detect-bundle "^2.0.0"
+$ composer require nmure/crawler-detect-bundle
 ```
 
-For Symfony < 4.0, run :
-
-```bash
-$ composer require nmure/crawler-detect-bundle "^1.0.0"
-```
-
-then enable the bundle in your AppKernel :
+then enable the bundle in your bundles.php:
 
 ```php
-// app/AppKernel.php
-class AppKernel extends Kernel
-{
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new Nmure\CrawlerDetectBundle\CrawlerDetectBundle(),
-            // ...
-        );
-    }
-}
+// config/bundles.php
+return [
+...
+    Nmure\CrawlerDetectBundle\CrawlerDetectBundle::class => ['all' => true],
+...
+];
+
 ```
 
 ## Usage
@@ -62,9 +51,11 @@ the Symfony's master request.
 To use this service from a controller :
 
 ```php
-public function indexAction()
+use Nmure\CrawlerDetectBundle\CrawlerDetect\CrawlerDetect;
+
+public function indexAction(CrawlerDetect $crawlerDetect)
 {
-    if ($this->get('crawler_detect')->isCrawler()) {
+    if ($crawlerDetect->isCrawler()) {
         // this request is from a crawler :)
     }
 
@@ -72,14 +63,11 @@ public function indexAction()
     // to use the one of the master request or if the app
     // is accessed by the CLI :
     $ua = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
-    if ($this->get('crawler_detect')->isCrawler($ua)) {
+    if ($crawlerDetect->isCrawler($ua)) {
         // this user agent belongs to a crawler :)
     }
 }
 ```
-
-You can also inject this service as a dependency
-using the `crawler_detect` service id.
 
 ## Testing
 
